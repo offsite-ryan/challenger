@@ -24,7 +24,7 @@
   }
 
   .test {
-    
+
   }
   .bends {
     /* line-height: 0.8; */
@@ -44,7 +44,7 @@
     border-left: 10px solid yellowgreen;
     /* border-bottom: 3px solid black; */
     margin-top: 15px;
-    min-height: 130px;
+    min-height: 190px;
   }
 
   .bend-2 {
@@ -53,7 +53,7 @@
     border-left: 5px solid black;
     /* border-bottom: 3px solid black; */
     margin-top: 15px;
-    min-height: 130px;
+    min-height: 190px;
     /* width: 90%; */
   }
 
@@ -76,13 +76,13 @@
   }
 
   .value {
-    font-size: 80px;
+    font-size: 130px;
     color: #4CAF50;
   }
 
   .calc-value {
-    font-size: 65px;
-    ;
+    font-size: 85px;
+    min-height: 110px;
   }
 
   .calc-buttons {
@@ -95,10 +95,10 @@
   }
 
   .btn-floating.btn-large {
-    width: 75px;
-    height: 75px;
+    width: 110px;
+    height: 110px;
     padding: 0;
-    padding-top: 7px;
+    padding-top: 27px;
   }
 </style>
 
@@ -111,7 +111,7 @@
     <div class="modal-content" style="padding-bottom: 0px;">
       <!-- <h4>Enter Requested Height</h4> -->
       <div class="row center" style="margin-bottom:0px;">
-        <h3 id="value" class="blue-text text-darken-3 calc-value" style="min-height: 65px;">15</h3>
+        <h3 id="value" class="blue-text text-darken-3 calc-value">15</h3>
       </div>
       <div class="row center" style="font-size: 50px;font-weight: 700;">
         <span>
@@ -224,7 +224,7 @@
           <div class="col s12 m6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
-              <div class="truncate input-label">Blank Height:</div>
+              <div class="truncate input-label">Blank Short:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-height" class="blue-text text-darken-3">
@@ -238,7 +238,7 @@
             </div>
             <!-- BLANK ACTUAL LENGTH -->
             <div class="col s7 center">
-              <div class="truncate input-label">Blank Length:</div>
+              <div class="truncate input-label">Blank Long:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-length" class="blue-text text-darken-3">
@@ -280,35 +280,24 @@
           </div>
         </div>
 
-        <!-- <div class="col s12 m6 center">
-          <div class="col s12"  style="border-bottom:5px solid black">Blank Width</div>
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-1">Short 1:<br /><b class="value" id="bend-height-1"></b>
+            </div>
         </div>
-        <div class="col s12 m6 center" style="border-bottom:5px solid black">Blank Length</div> -->
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-1">Long 1:<br /><b class="value" id="bend-length-1"></b>
+            </div>
+        </div>
 
         <div class="col s12 m6 center bends">
-            <div class="label-value bend-1">Bend 1:<br /><b class="value" id="bend-height-1"></b>
+            <div class="label-value bend-2">Short 2:<br /><b class="value" id="bend-height-2"></b>
             </div>
         </div>
         <div class="col s12 m6 center bends">
-            <div class="label-value bend-1">Bend 3:<br /><b class="value" id="bend-length-1"></b>
+            <div class="label-value bend-2">Long 2:<br /><b class="value" id="bend-length-2"></b>
             </div>
         </div>
-        <!-- <div class="col s12 m6 center" style="font-size:38px;">
-          <div class="label">Blank Target Length<br /><b class="green-text value" id="blank-target-length"></b>
-          </div>
-        </div> -->
-        <div class="col s12 m6 center bends">
-            <div class="label-value bend-2">Bend 2:<br /><b class="value" id="bend-height-2"></b>
-            </div>
-        </div>
-        <div class="col s12 m6 center bends">
-            <div class="label-value bend-2">Bend 4:<br /><b class="value" id="bend-length-2"></b>
-            </div>
-        </div>
-        <!-- <div class="col s12 m6 center" style="font-size:43px;">
-          <div class="leg">Height Leg: <b class="grey-text" id="leg-height" style="margin-left:28px;"></b>
-          </div>
-        </div> -->
+
       </div>
 
     </div>
