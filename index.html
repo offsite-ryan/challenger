@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
+  <title>Panel Calculator</title>
+
+  <!-- CSS  -->
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+  <!-- <link href="fonts/material.woff2" rel="stylesheet"> -->
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+</head>
+<style>
+  html {
+    line-height: 1.26;
+  }
+
+  .x {
+    margin-left: 15px;
+    margin-right: 15px;
+    font-size: 30px;
+  }
+
+  .bends {
+    /* line-height: 0.8; */
+  }
+  .blank {
+    border-right: 5px solid black;
+    border-left: 5px solid black;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+    margin-top: 15px;
+    min-height: 120px;
+  }
+
+  .bend-1 {
+    /* border-right: 3px solid black; */
+    border-bottom: 5px solid black;
+    border-left: 10px solid yellowgreen;
+    /* border-bottom: 3px solid black; */
+    margin-top: 15px;
+    min-height: 130px;
+  }
+
+  .bend-2 {
+    border-right: 10px solid yellowgreen;
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
+    /* border-bottom: 3px solid black; */
+    margin-top: 15px;
+    min-height: 130px;
+    /* width: 90%; */
+  }
+
+  .leg {
+    font-size: 20px;
+  }
+
+  .input-label {
+    font-size: 35px;
+    ;
+  }
+
+  .label {
+    font-size: 20px;
+  }
+
+  .label-value {
+    font-size: 15px;
+    ;
+  }
+
+  .value {
+    font-size: 80px;
+    color: #4CAF50;
+  }
+
+  .calc-value {
+    font-size: 65px;
+    ;
+  }
+
+  .calc-buttons {
+    font-size: 35px;
+    ;
+  }
+
+  .row {
+    margin: 0px;
+  }
+
+  .btn-floating.btn-large {
+    width: 75px;
+    height: 75px;
+    padding: 0;
+    padding-top: 7px;
+  }
+</style>
+
+<body>
+  <!-- Modal Trigger -->
+  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal12" onclick="openModal('length')">Modal</a> -->
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal" style="top:30px;max-height:90%;">
+    <div class="modal-content" style="padding-bottom: 0px;">
+      <!-- <h4>Enter Requested Height</h4> -->
+      <div class="row center" style="margin-bottom:0px;">
+        <h3 id="value" class="blue-text text-darken-3 calc-value" style="min-height: 65px;">15</h3>
+      </div>
+      <div class="row center" style="font-size: 50px;font-weight: 700;">
+        <span>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(7)">7</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(8)">8</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(9)">9</a>
+        </span>
+        <br>
+        <span style="margin-top:5px;">
+          <a class=" btn-floating btn-large waves-effect waves-light orange"
+            style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(4)">4</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(5)">5</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(6)">6</a>
+        </span>
+        <br>
+        <span style="margin-top:5px;">
+          <a class=" btn-floating btn-large waves-effect waves-light orange"
+            style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(1)">1</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(2)">2</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(3)">3</a>
+        </span>
+        <br>
+        <span style="margin-top:5px;">
+          <a id="plusMinus" class=" btn-floating btn-large waves-effect waves-light orange"
+            style="margin-bottom: 0px;font-size: 25px;" onclick="updateValue('-')">+/-</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(0)">0</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue('.')">.</a>
+        </span>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-green btn-flat calc-buttons left" onclick="updateValue('C')">Clear</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat calc-buttons" onclick="apply()">OK</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat calc-buttons">Cancel</a>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+  <!-- FORM -->
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container" style="width:90%;">
+      <!-- <br class="show-on" /> -->
+      <!-- <br><br>
+      <h1 class="header center orange-text">Starter Template</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
+      </div>
+      <div class="row center">
+        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+      </div>
+      <br><br> -->
+
+      <div id="bends" class="row">
+        <!-- <div class="col s12"> -->
+
+        <div class="row">
+          <div class="col s12 m6 center" style="font-size:38px;">
+
+            <!-- <div class="black-text" style="font-size: 22px;"><b>Requested Size</b></div>
+            <hr style="margin-top:0px;" /> -->
+
+            <!-- FINISH HEIGHT -->
+            <!-- <br /> -->
+            <div class="col s7 center" style="border:0px solid blue">
+              <div class="truncate input-label">Finish Height:</div>
+            </div>
+            <div class="col s3 center">
+              <div id="height" class="blue-text text-darken-3">
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('height')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <!-- <i class="material-icons" onclick="openModal('length')">edit</i> -->
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
+            <!-- FINISH LENGTH -->
+            <div class="col s7 center">
+              <div class="truncate input-label">Finish Length:</div>
+            </div>
+            <div class="col s3 center" style="border:0px solid blue">
+              <div id="length" class="blue-text text-darken-3">
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('length')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <!-- <i class="material-icons" >edit</i> -->
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
+            <br />
+          </div>
+          <!-- FINISH DIMENSIONS -->
+          <div class="col s12 m6 center" style="font-size:38px;">
+            <!-- BLANK ACTUAL HEIGHT -->
+            <div class="col s7 center">
+              <div class="truncate input-label">Blank Height:</div>
+            </div>
+            <div class="col s3 center">
+              <div id="blank-actual-height" class="blue-text text-darken-3">
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('blank-actual-height')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <!-- <i class="material-icons" >edit</i> -->
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
+            <!-- BLANK ACTUAL LENGTH -->
+            <div class="col s7 center">
+              <div class="truncate input-label">Blank Length:</div>
+            </div>
+            <div class="col s3 center">
+              <div id="blank-actual-length" class="blue-text text-darken-3">
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('blank-actual-length')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <!-- <i class="material-icons" >edit</i> -->
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
+            <!-- BEND OFFSET -->
+            <div class="col s7 center">
+              <div class="truncate input-label">Bend Offset:</div>
+            </div>
+            <div class="col s3 center">
+              <div id="bend-offset" class="blue-text text-darken-3">0.08
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('bend-offset')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <!-- <i class="material-icons">edit</i> -->
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
+
+            <!-- <div class="black-text" style="font-size: 22px;"><b>Blank Target Size</b></div> -->
+            <!-- <hr style="margin-top:0px;" /> -->
+
+
+          </div>
+        </div>
+        <!-- <hr /> -->
+
+        <!-- VALUES -->
+        <div class="col s10 offset-s1 center blank">
+          <div class="label">Blank Target Size<br /><b class="green-text value" id="blank-target-height"></b>
+            <b class="green-text x">x</b> <b class="green-text value" id="blank-target-length"></b>
+          </div>
+        </div>
+
+        <!-- <div class="col s12 m6 center">
+          <div class="col s12"  style="border-bottom:5px solid black">Blank Width</div>
+        </div>
+        <div class="col s12 m6 center" style="border-bottom:5px solid black">Blank Length</div> -->
+
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-1">Bend 1:<br /><b class="value" id="bend-height-1"></b>
+            </div>
+        </div>
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-1">Bend 3:<br /><b class="value" id="bend-length-1"></b>
+            </div>
+        </div>
+        <!-- <div class="col s12 m6 center" style="font-size:38px;">
+          <div class="label">Blank Target Length<br /><b class="green-text value" id="blank-target-length"></b>
+          </div>
+        </div> -->
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-2">Bend 2:<br /><b class="value" id="bend-height-2"></b>
+            </div>
+        </div>
+        <div class="col s12 m6 center bends">
+            <div class="label-value bend-2">Bend 4:<br /><b class="value" id="bend-length-2"></b>
+            </div>
+        </div>
+        <!-- <div class="col s12 m6 center" style="font-size:43px;">
+          <div class="leg">Height Leg: <b class="grey-text" id="leg-height" style="margin-left:28px;"></b>
+          </div>
+        </div> -->
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--  Scripts-->
+  <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+
+</body>
+<script>
+  var elem = null;
+  // var instance = null;
+  var field = null;
+  document.addEventListener('DOMContentLoaded', function () {
+    // document.getElementById('blank-size').hidden = true;
+    // document.getElementById('bends').hidden = true;
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+    elem = elems[0];
+    // setTimeout(() => apply(), 500);
+  });
+  function openModal(x) {
+    field = x;
+    var v = document.getElementById(field).innerHTML.trim()
+    document.getElementById("value").innerHTML = +(v) === 0 ? '' : v;
+    var instance = M.Modal.getInstance(elem);
+    if (field == 'bend-offset') {
+      document.getElementById("plusMinus").removeAttribute('disabled');
+    } else {
+      document.getElementById("plusMinus").setAttribute('disabled', false);
+    }
+    instance.open();
+  }
+  function updateValue(x) {
+    setTimeout(() => {
+      var e = document.getElementById("value");
+      if (x == 'C') {
+        e.innerHTML = "";
+      } else if (x == '-') {
+        let v = e.innerHTML;
+        if (v.startsWith(x)) {
+          v = v.substr(1);
+        } else {
+          v = x + v;
+        }
+        e.innerHTML = v;
+      } else {
+        e.innerHTML += x;
+      }
+    }, 1)
+  }
+  function apply() {
+    var v = +(document.getElementById("value").innerHTML);
+    document.getElementById(field).innerHTML = v;
+    if (field == 'height' || field == 'length') {
+      var bv = v + (1.187 * 2);
+      if (v > 0) {
+        document.getElementById("blank-target-" + field).innerHTML = Round(bv, 3);
+        if (field == 'height') {
+          document.getElementById("blank-actual-height").innerHTML = '';
+          // document.getElementById("blank-actual-height").style.background = 'red';
+          // document.getElementById("bend-height-1").style.color = 'red';
+        }
+        if (field == 'length') {
+          document.getElementById("blank-actual-length").innerHTML = '';
+          // document.getElementById("blank-actual-length").style.background = 'red';
+          // document.getElementById("bend-length-1").style.color = 'red';
+        }
+      }
+    }
+    // if (field == 'blank-actual-length') {
+    //   // console.log(v, v ? '4CAF50' : 'red');
+    //   document.getElementById("blank-actual-length").style.background = v ? 'white' : 'red';
+    //   document.getElementById("bend-length-1").style.color = v ? '#4CAF50' : 'red';
+    // }
+    var requestedHeight = +(document.getElementById("height").innerHTML);
+    var requestedLength = +(document.getElementById("length").innerHTML);
+    var bendOffset = +(document.getElementById("bend-offset").innerHTML);
+    var bendActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
+    var bendActualLength = +(document.getElementById("blank-actual-length").innerHTML);
+    var heightLeg = (bendActualHeight - requestedHeight - bendOffset) / 2;
+    var lengthLeg = (bendActualLength - requestedLength - bendOffset) / 2;
+    if (bendActualHeight > 0 && requestedHeight > 0) {
+      var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
+      document.getElementById("bend-height-1").innerHTML = v1;
+      document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
+    }
+    if (bendActualLength > 0 && requestedLength > 0) {
+      var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
+      document.getElementById("bend-length-1").innerHTML = v2;
+      document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+    }
+
+    // document.getElementById("leg-height").innerHTML = Round(hl, 3);
+    // document.getElementById("leg-length").innerHTML = Round(ll, 3);
+  }
+  function Round(value, decimals = 0) {
+    if (typeof value === 'number') {
+      return Number(Math.round(+(value + 'e' + decimals)) + 'e-' + decimals).toFixed(decimals);
+    } else {
+      return value; // handles null being provided
+    }
+  }
+  // apply()
+</script>
+
+</html>
