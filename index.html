@@ -206,14 +206,27 @@
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
-            <br />
+            <!-- <br /> -->
+            <!-- FINISH LENGTH -->
+            <div class="col s7 center">
+              <div class="truncate input-label">Leg Length:</div>
+            </div>
+            <div class="col s3 center" style="border:0px solid blue">
+              <div id="leg" class="blue-text text-darken-3">
+              </div>
+            </div>
+            <div class="col s1 center" onclick="openModal('leg')">
+              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
+                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
+              </div>
+            </div>
           </div>
 
           <!-- FINISH DIMENSIONS -->
           <div class="col s12 l6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
-              <div class="truncate input-label">Blank Short:</div>
+              <div class="truncate input-label">Short Actual:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-height" class="blue-text text-darken-3">
@@ -226,7 +239,7 @@
             </div>
             <!-- BLANK ACTUAL LENGTH -->
             <div class="col s7 center">
-              <div class="truncate input-label">Blank Long:</div>
+              <div class="truncate input-label">Long Actual:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-length" class="blue-text text-darken-3">
@@ -352,11 +365,12 @@
   }
   function apply() {
     var v = +(document.getElementById("value").innerHTML);
+    var leg = +(document.getElementById("leg").innerHTML);
     document.getElementById(field).innerHTML = v;
     if (field == 'height' || field == 'length') {
-      var bv = v + (1.187 * 2);
+      var blankSize = v + (leg * 2);
       if (v > 0) {
-        document.getElementById("blank-target-" + field).innerHTML = Round(bv, 3);
+        document.getElementById("blank-target-" + field).innerHTML = Round(blankSize, 3);
         if (field == 'height') {
           document.getElementById("blank-actual-height").innerHTML = '';
         }
@@ -368,10 +382,11 @@
     calculate();
   }
   function calculate() {
+    var leg = +(document.getElementById("leg").innerHTML);
     var requestedHeight = +(document.getElementById("height").innerHTML);
     var requestedLength = +(document.getElementById("length").innerHTML);
-    var targetHeight = requestedHeight + (1.187 * 2);
-    var targetLength = requestedLength + (1.187 * 2);
+    var targetHeight = requestedHeight + (leg * 2);
+    var targetLength = requestedLength + (leg * 2);
     var bendOffset = +(document.getElementById("bend-offset").innerHTML);
     var bendActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
     var bendActualLength = +(document.getElementById("blank-actual-length").innerHTML);
