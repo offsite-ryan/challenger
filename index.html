@@ -76,8 +76,8 @@
   }
 
   .value {
-    /* font-size: 130px; */
-    font-size: 10vw;
+    /* font-size: 2.7vh; */
+    font-size: 105px;
     color: #4CAF50;
   }
 
@@ -96,10 +96,10 @@
   }
 
   .btn-floating.btn-large {
-    width: 110px;
-    height: 110px;
+    width: 80px;
+    height: 80px;
     padding: 0;
-    padding-top: 27px;
+    padding-top: 15px;
   }
 </style>
 
@@ -299,7 +299,7 @@
             </div>
         </div>
         <div class="col s12 m6 center bends">
-            <div class="label-value bend-2">Long Bend:<br /><b class="value" id="bend-length-2"></b>
+            <div class="label-value bend-2">Long Bend 2<br /><b class="value" id="bend-length-2"></b>
             </div>
         </div>
 
@@ -392,11 +392,17 @@
       var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
       document.getElementById("bend-height-1").innerHTML = v1;
       document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
+    } else {
+      document.getElementById("bend-height-1").innerHTML = '';
+      document.getElementById("bend-height-2").innerHTML = '';
     }
     if (bendActualLength > 0 && requestedLength > 0) {
       var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
       document.getElementById("bend-length-1").innerHTML = v2;
       document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+    } else {
+      document.getElementById("bend-length-1").innerHTML = '';
+      document.getElementById("bend-length-2").innerHTML = '';
     }
 
     // document.getElementById("leg-height").innerHTML = Round(hl, 3);
