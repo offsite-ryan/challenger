@@ -319,12 +319,23 @@
   // query params: ?bend-offset=0.08&blank-actual-height=17.5&blank-actual-length=70&height=15&length=47.5
   var elem = null;
   var field = null;
+  var minLeg = 0.5;
+  var maxLeg = 2;
+  window.addEventListener('resize', function () {
+    setValuefontSize(this);
+  });
   document.addEventListener('DOMContentLoaded', function () {
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     if (Object.keys(params).length > 0) {
       Object.keys(params).forEach((p) => {
-        document.getElementById(p).innerHTML = +(params[p]);
+        if (p == 'minLeg') {
+          minLeg = +(params[p]);
+        } else if (p == 'maxLeg') {
+          maxLeg = +(params[p]);
+        } else {
+          document.getElementById(p).innerHTML = +(params[p]);
+        }
       })
       calculate()
     }
@@ -388,38 +399,55 @@
     var targetHeight = requestedHeight + (leg * 2);
     var targetLength = requestedLength + (leg * 2);
     var bendOffset = +(document.getElementById("bend-offset").innerHTML);
-    var bendActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
-    var bendActualLength = +(document.getElementById("blank-actual-length").innerHTML);
-    var heightLeg = (bendActualHeight - requestedHeight - bendOffset) / 2;
-    var lengthLeg = (bendActualLength - requestedLength - bendOffset) / 2;
-    if (bendActualHeight > 0 && requestedHeight > 0) {
+    var blankActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
+    var blackActualLength = +(document.getElementById("blank-actual-length").innerHTML);
+    var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight - bendOffset) / 2 : (targetHeight - requestedHeight) / 2;
+    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - bendOffset) / 2 : (targetLength - requestedLength) / 2;
+    if (blankActualHeight > 0 && requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
-      var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
+      var v1 = Round(blankActualHeight - heightLeg - bendOffset, 3);
       document.getElementById("bend-height-1").innerHTML = v1;
       document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
       document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
     } else {
       document.getElementById("bend-height-1").innerHTML = '';
       document.getElementById("bend-height-2").innerHTML = '';
-      document.getElementById("leg-height").innerHTML = Round((targetHeight - requestedHeight)/2, 3);
+      document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
     }
-    if (bendActualLength > 0 && requestedLength > 0) {
+    if (blackActualLength > 0 && requestedLength > 0) {
       document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
-      var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
+      var v2 = Round(blackActualLength - lengthLeg - bendOffset, 3);
       document.getElementById("bend-length-1").innerHTML = v2;
       document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
       document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
     } else {
       document.getElementById("bend-length-1").innerHTML = '';
       document.getElementById("bend-length-2").innerHTML = '';
-      document.getElementById("leg-length").innerHTML = Round((targetLength - requestedLength)/2, 3);;
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);;
     }
-    document.getElementById("leg-height").style.color = heightLeg < 0.5 ? 'red' : 'black';
-    document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < 0.5 ? 'red' : 'white';
-    document.getElementById("blank-actual-height").style.color = heightLeg < 0.5 ? 'white' : '#1565C0';
-    document.getElementById("leg-length").style.color = lengthLeg < 0.5 ? 'red' : 'black';
-    document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < 0.5 ? 'red' : 'white';
-    document.getElementById("blank-actual-length").style.color = lengthLeg < 0.5 ? 'white' : '#1565C0';
+    document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'black';
+    document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'white';
+    document.getElementById("blank-actual-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'white' : '#1565C0';
+    document.getElementById("leg-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : 'black';
+    document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : 'white';
+    document.getElementById("blank-actual-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'white' : '#1565C0';
+
+    // document.getElementById("blank-actual-height").style.fontSize = '70px';
+    setValuefontSize(this);
+  }
+  function setValuefontSize(e) {
+    const h = window.innerHeight;
+    const w = window.innerWidth;
+    console.log(h, w, e);
+    var size = h > w && w < 500 ? '90px' : '125px';
+    document.getElementById("blank-target-height").style.fontSize = size;
+    document.getElementById("bend-height-1").style.fontSize = size;
+    document.getElementById("bend-height-2").style.fontSize = size;
+    document.getElementById("blank-target-length").style.fontSize = size;
+    document.getElementById("bend-length-1").style.fontSize = size;
+    document.getElementById("bend-length-2").style.fontSize = size;
+
+    // document.getElementsByClassName("label").style.fontSize = size;
   }
   function Round(value, decimals = 0) {
     if (typeof value === 'number') {
