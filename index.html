@@ -378,47 +378,13 @@
         document.getElementById("blank-target-" + field).innerHTML = Round(bv, 3);
         if (field == 'height') {
           document.getElementById("blank-actual-height").innerHTML = '';
-          // document.getElementById("blank-actual-height").style.background = 'red';
-          // document.getElementById("bend-height-1").style.color = 'red';
         }
         if (field == 'length') {
           document.getElementById("blank-actual-length").innerHTML = '';
-          // document.getElementById("blank-actual-length").style.background = 'red';
-          // document.getElementById("bend-length-1").style.color = 'red';
         }
       }
     }
-    // if (field == 'blank-actual-length') {
-    //   // console.log(v, v ? '4CAF50' : 'red');
-    //   document.getElementById("blank-actual-length").style.background = v ? 'white' : 'red';
-    //   document.getElementById("bend-length-1").style.color = v ? '#4CAF50' : 'red';
-    // }
-    var requestedHeight = +(document.getElementById("height").innerHTML);
-    var requestedLength = +(document.getElementById("length").innerHTML);
-    var bendOffset = +(document.getElementById("bend-offset").innerHTML);
-    var bendActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
-    var bendActualLength = +(document.getElementById("blank-actual-length").innerHTML);
-    var heightLeg = (bendActualHeight - requestedHeight - bendOffset) / 2;
-    var lengthLeg = (bendActualLength - requestedLength - bendOffset) / 2;
-    if (bendActualHeight > 0 && requestedHeight > 0) {
-      var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
-      document.getElementById("bend-height-1").innerHTML = v1;
-      document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
-    } else {
-      document.getElementById("bend-height-1").innerHTML = '';
-      document.getElementById("bend-height-2").innerHTML = '';
-    }
-    if (bendActualLength > 0 && requestedLength > 0) {
-      var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
-      document.getElementById("bend-length-1").innerHTML = v2;
-      document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
-    } else {
-      document.getElementById("bend-length-1").innerHTML = '';
-      document.getElementById("bend-length-2").innerHTML = '';
-    }
-
-    // document.getElementById("leg-height").innerHTML = Round(hl, 3);
-    // document.getElementById("leg-length").innerHTML = Round(ll, 3);
+    calculate();
   }
   function calculate() {
     var requestedHeight = +(document.getElementById("height").innerHTML);
