@@ -36,6 +36,15 @@
     min-height: 200px;
   }
 
+  .blank-box {
+    border-right: 5px solid black;
+    border-left: 5px solid black;
+    border-bottom: 5px solid black;
+    border-top: 5px solid black;
+    /* margin-top: 12px; */
+    height: 50px;
+  }
+
   .bend-1 {
     /* border-right: 3px solid black; */
     border-bottom: 5px solid black;
@@ -249,7 +258,9 @@
         <!-- VALUES -->
         <div class="col s12 l6 center">
           <div class="col s12 center">
-            <div class="label blank">Blank Target Short<br /><b class="green-text value" id="blank-target-height"></b>
+            <div class="label blank">Blank Target Short<br />
+              <div id="leg-height"></div>
+              <b class="green-text value" id="blank-target-height"></b>
             </div>
           </div>
 
@@ -265,7 +276,9 @@
 
         <div class="col s12 l6 center">
           <div class="col s12 center">
-            <div class="label blank">Blank Target Long<br /><b class="green-text value" id="blank-target-length"></b>
+            <div class="label blank">Blank Target Long<br />
+              <div id="leg-length"></div>
+              <b class="green-text value" id="blank-target-length"></b>
             </div>
           </div>
           <div class="col s12 center bends">
@@ -369,6 +382,7 @@
       var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
       document.getElementById("bend-height-1").innerHTML = v1;
       document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
+      document.getElementById("leg-height").innerHTML = 'Leg: ' + Round(heightLeg, 3);
     } else {
       document.getElementById("bend-height-1").innerHTML = '';
       document.getElementById("bend-height-2").innerHTML = '';
@@ -378,6 +392,7 @@
       var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
       document.getElementById("bend-length-1").innerHTML = v2;
       document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+      document.getElementById("leg-length").innerHTML = 'Leg: ' + Round(lengthLeg, 3);
     } else {
       document.getElementById("bend-length-1").innerHTML = '';
       document.getElementById("bend-length-2").innerHTML = '';
