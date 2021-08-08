@@ -7,8 +7,6 @@
   <title>Panel Calculator</title>
 
   <!-- CSS  -->
-  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
-  <!-- <link href="fonts/material.woff2" rel="stylesheet"> -->
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
 </head>
@@ -104,13 +102,10 @@
 </style>
 
 <body>
-  <!-- Modal Trigger -->
-  <!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal12" onclick="openModal('length')">Modal</a> -->
 
   <!-- Modal Structure -->
   <div id="modal1" class="modal" style="top:30px;max-height:90%;">
     <div class="modal-content" style="padding-bottom: 0px;">
-      <!-- <h4>Enter Requested Height</h4> -->
       <div class="row center" style="margin-bottom:0px;">
         <h3 id="value" class="blue-text text-darken-3 calc-value"></h3>
       </div>
@@ -170,29 +165,15 @@
   <!-- FORM -->
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="width:90%;">
-      <!-- <br class="show-on" /> -->
-      <!-- <br><br>
-      <h1 class="header center orange-text">Starter Template</h1>
-      <div class="row center">
-        <h5 class="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-      </div>
-      <div class="row center">
-        <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
-      </div>
-      <br><br> -->
 
       <div id="bends" class="row">
-        <!-- <div class="col s12"> -->
 
         <div class="row">
           <div class="col s12 l6 center" style="font-size:38px;">
-
-            <!-- <div class="black-text" style="font-size: 22px;"><b>Requested Size</b></div>
-            <hr style="margin-top:0px;" /> -->
+            <hr style="margin-top:0px;" />
 
             <!-- FINISH HEIGHT -->
-            <!-- <br /> -->
-            <div class="col s7 center" style="border:0px solid blue">
+            <div class="col s7 center">
               <div class="truncate input-label">Finish Height:</div>
             </div>
             <div class="col s3 center">
@@ -201,7 +182,6 @@
             </div>
             <div class="col s1 center" onclick="openModal('height')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <!-- <i class="material-icons" onclick="openModal('length')">edit</i> -->
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
@@ -215,12 +195,12 @@
             </div>
             <div class="col s1 center" onclick="openModal('length')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <!-- <i class="material-icons" >edit</i> -->
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
             <br />
           </div>
+
           <!-- FINISH DIMENSIONS -->
           <div class="col s12 l6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
@@ -233,7 +213,6 @@
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-height')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <!-- <i class="material-icons" >edit</i> -->
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
@@ -247,7 +226,6 @@
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-length')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <!-- <i class="material-icons" >edit</i> -->
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
@@ -261,14 +239,9 @@
             </div>
             <div class="col s1 center" onclick="openModal('bend-offset')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <!-- <i class="material-icons">edit</i> -->
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
-
-            <!-- <div class="black-text" style="font-size: 22px;"><b>Blank Target Size</b></div> -->
-            <!-- <hr style="margin-top:0px;" /> -->
-
 
           </div>
         </div>
@@ -313,14 +286,13 @@
 
 
   <!--  Scripts-->
-  <!-- <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script> -->
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
 
 </body>
 <script>
+  // query params: ?bend-offset=0.08&blank-actual-height=17.5&blank-actual-length=70&height=15&length=47.5
   var elem = null;
-  // var instance = null;
   var field = null;
   document.addEventListener('DOMContentLoaded', function () {
     const urlSearchParams = new URLSearchParams(window.location.search);
@@ -332,12 +304,9 @@
       calculate()
     }
 
-    // document.getElementById('blank-size').hidden = true;
-    // document.getElementById('bends').hidden = true;
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems, {});
     elem = elems[0];
-    // setTimeout(() => apply(), 500);
   });
   function openModal(x) {
     field = x;
@@ -422,7 +391,6 @@
       return value; // handles null being provided
     }
   }
-  // apply()
 </script>
 
 </html>
