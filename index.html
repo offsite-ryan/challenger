@@ -23,12 +23,12 @@
     font-size: 30px;
   }
 
-  .test {
+  .test {}
 
-  }
   .bends {
     /* border-bottom: 5px solid black; */
   }
+
   .blank {
     /* border-right: 5px solid black; */
     /* border-left: 5px solid black; */
@@ -77,7 +77,7 @@
 
   .value {
     /* font-size: 2.7vh; */
-    font-size: 105px;
+    font-size: 125px;
     color: #4CAF50;
   }
 
@@ -112,7 +112,7 @@
     <div class="modal-content" style="padding-bottom: 0px;">
       <!-- <h4>Enter Requested Height</h4> -->
       <div class="row center" style="margin-bottom:0px;">
-        <h3 id="value" class="blue-text text-darken-3 calc-value">15</h3>
+        <h3 id="value" class="blue-text text-darken-3 calc-value"></h3>
       </div>
       <div class="row center" style="font-size: 50px;font-weight: 700;">
         <span>
@@ -154,8 +154,8 @@
     </div>
     <div class="modal-footer">
       <a class="waves-effect waves-green btn-flat calc-buttons left" onclick="updateValue('C')">Clear</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat calc-buttons" onclick="apply()">OK</a>
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat calc-buttons">Cancel</a>
+      <a class="modal-close waves-effect waves-green btn-flat calc-buttons" onclick="apply()">OK</a>
+      <a class="modal-close waves-effect waves-green btn-flat calc-buttons">Cancel</a>
     </div>
   </div>
 
@@ -185,7 +185,7 @@
         <!-- <div class="col s12"> -->
 
         <div class="row">
-          <div class="col s12 m6 center" style="font-size:38px;">
+          <div class="col s12 l6 center" style="font-size:38px;">
 
             <!-- <div class="black-text" style="font-size: 22px;"><b>Requested Size</b></div>
             <hr style="margin-top:0px;" /> -->
@@ -222,7 +222,7 @@
             <br />
           </div>
           <!-- FINISH DIMENSIONS -->
-          <div class="col s12 m6 center" style="font-size:38px;">
+          <div class="col s12 l6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
               <div class="truncate input-label">Blank Short:</div>
@@ -275,32 +275,35 @@
         <hr />
 
         <!-- VALUES -->
-        <div class="col s12 m6 center">
-          <div class="label blank">Blank Target Short<br /><b class="green-text value" id="blank-target-height"></b>
+        <div class="col s12 l6 center">
+          <div class="col s12 center">
+            <div class="label blank">Blank Target Short<br /><b class="green-text value" id="blank-target-height"></b>
+            </div>
           </div>
-        </div>
 
-        <div class="col s12 m6 center">
-          <div class="label blank">Blank Target Long<br /><b class="green-text value" id="blank-target-length"></b>
-          </div>
-        </div>
-
-        <div class="col s12 m6 center bends">
+          <div class="col s12 center bends">
             <div class="label-value bend-1">Short Bend 1<br /><b class="value" id="bend-height-1"></b>
             </div>
-        </div>
-        <div class="col s12 m6 center bends">
-            <div class="label-value bend-1">Long Bend 1<br /><b class="value" id="bend-length-1"></b>
-            </div>
-        </div>
-
-        <div class="col s12 m6 center bends">
+          </div>
+          <div class="col s12 center bends">
             <div class="label-value bend-2">Short Bend 2<br /><b class="value" id="bend-height-2"></b>
             </div>
+          </div>
         </div>
-        <div class="col s12 m6 center bends">
+
+        <div class="col s12 l6 center">
+          <div class="col s12 center">
+            <div class="label blank">Blank Target Long<br /><b class="green-text value" id="blank-target-length"></b>
+            </div>
+          </div>
+          <div class="col s12 center bends">
+            <div class="label-value bend-1">Long Bend 1<br /><b class="value" id="bend-length-1"></b>
+            </div>
+          </div>
+          <div class="col s12 center bends">
             <div class="label-value bend-2">Long Bend 2<br /><b class="value" id="bend-length-2"></b>
             </div>
+          </div>
         </div>
 
       </div>
@@ -320,6 +323,15 @@
   // var instance = null;
   var field = null;
   document.addEventListener('DOMContentLoaded', function () {
+    const urlSearchParams = new URLSearchParams(window.location.search);
+    const params = Object.fromEntries(urlSearchParams.entries());
+    if (Object.keys(params).length > 0) {
+      Object.keys(params).forEach((p) => {
+        document.getElementById(p).innerHTML = +(params[p]);
+      })
+      calculate()
+    }
+
     // document.getElementById('blank-size').hidden = true;
     // document.getElementById('bends').hidden = true;
     var elems = document.querySelectorAll('.modal');
@@ -407,6 +419,35 @@
 
     // document.getElementById("leg-height").innerHTML = Round(hl, 3);
     // document.getElementById("leg-length").innerHTML = Round(ll, 3);
+  }
+  function calculate() {
+    var requestedHeight = +(document.getElementById("height").innerHTML);
+    var requestedLength = +(document.getElementById("length").innerHTML);
+    var targetHeight = requestedHeight + (1.187 * 2);
+    var targetLength = requestedLength + (1.187 * 2);
+    var bendOffset = +(document.getElementById("bend-offset").innerHTML);
+    var bendActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
+    var bendActualLength = +(document.getElementById("blank-actual-length").innerHTML);
+    var heightLeg = (bendActualHeight - requestedHeight - bendOffset) / 2;
+    var lengthLeg = (bendActualLength - requestedLength - bendOffset) / 2;
+    if (bendActualHeight > 0 && requestedHeight > 0) {
+      document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
+      var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
+      document.getElementById("bend-height-1").innerHTML = v1;
+      document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
+    } else {
+      document.getElementById("bend-height-1").innerHTML = '';
+      document.getElementById("bend-height-2").innerHTML = '';
+    }
+    if (bendActualLength > 0 && requestedLength > 0) {
+      document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
+      var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
+      document.getElementById("bend-length-1").innerHTML = v2;
+      document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+    } else {
+      document.getElementById("bend-length-1").innerHTML = '';
+      document.getElementById("bend-length-2").innerHTML = '';
+    }
   }
   function Round(value, decimals = 0) {
     if (typeof value === 'number') {
