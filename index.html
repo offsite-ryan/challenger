@@ -420,6 +420,9 @@
       return value; // handles null being provided
     }
   }
+  function setViewport(scale) {
+    document.getElementById("viewport").setAttribute("content", `width=device-width, initial-scale=1, maximum-scale= ${scale}`);
+  }
 </script>
 
 </html>
