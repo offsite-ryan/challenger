@@ -425,6 +425,7 @@
       document.getElementById("bend-length-2").innerHTML = '';
       document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);;
     }
+    // validate the leg length for height and length based on min and max
     document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'black';
     document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'white';
     document.getElementById("blank-actual-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'white' : '#1565C0';
@@ -432,13 +433,15 @@
     document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : 'white';
     document.getElementById("blank-actual-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'white' : '#1565C0';
 
-    // document.getElementById("blank-actual-height").style.fontSize = '70px';
     setValuefontSize(this);
   }
+  /**
+   * set the font size so that it is not too big on mobile
+   */
   function setValuefontSize(e) {
     const h = window.innerHeight;
     const w = window.innerWidth;
-    console.log(h, w, e);
+    // console.log(h, w, e);
     var size = h > w && w < 500 ? '90px' : '125px';
     document.getElementById("blank-target-height").style.fontSize = size;
     document.getElementById("bend-height-1").style.fontSize = size;
