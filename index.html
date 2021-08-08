@@ -229,7 +229,7 @@
               <div class="truncate input-label">Short Actual:</div>
             </div>
             <div class="col s3 center">
-              <div id="blank-actual-height" class="blue-text text-darken-3">
+              <div id="blank-actual-height">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-height')">
@@ -242,7 +242,7 @@
               <div class="truncate input-label">Long Actual:</div>
             </div>
             <div class="col s3 center">
-              <div id="blank-actual-length" class="blue-text text-darken-3">
+              <div id="blank-actual-length">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-length')">
@@ -272,7 +272,7 @@
         <div class="col s12 l6 center">
           <div class="col s12 center">
             <div class="label blank">Blank Target Short<br />
-              <div id="leg-height"></div>
+              <div>Leg: <b id="leg-height"></b></div>
               <b class="green-text value" id="blank-target-height"></b>
             </div>
           </div>
@@ -290,7 +290,7 @@
         <div class="col s12 l6 center">
           <div class="col s12 center">
             <div class="label blank">Blank Target Long<br />
-              <div id="leg-length"></div>
+              <div>Leg: <b id="leg-length"></b></div>
               <b class="green-text value" id="blank-target-length"></b>
             </div>
           </div>
@@ -397,21 +397,29 @@
       var v1 = Round(bendActualHeight - heightLeg - bendOffset, 3);
       document.getElementById("bend-height-1").innerHTML = v1;
       document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
-      document.getElementById("leg-height").innerHTML = 'Leg: ' + Round(heightLeg, 3);
+      document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
     } else {
       document.getElementById("bend-height-1").innerHTML = '';
       document.getElementById("bend-height-2").innerHTML = '';
+      document.getElementById("leg-height").innerHTML = Round((targetHeight - requestedHeight)/2, 3);
     }
     if (bendActualLength > 0 && requestedLength > 0) {
       document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
       var v2 = Round(bendActualLength - lengthLeg - bendOffset, 3);
       document.getElementById("bend-length-1").innerHTML = v2;
       document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
-      document.getElementById("leg-length").innerHTML = 'Leg: ' + Round(lengthLeg, 3);
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
     } else {
       document.getElementById("bend-length-1").innerHTML = '';
       document.getElementById("bend-length-2").innerHTML = '';
+      document.getElementById("leg-length").innerHTML = Round((targetLength - requestedLength)/2, 3);;
     }
+    document.getElementById("leg-height").style.color = heightLeg < 0.5 ? 'red' : 'black';
+    document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < 0.5 ? 'red' : 'white';
+    document.getElementById("blank-actual-height").style.color = heightLeg < 0.5 ? 'white' : '#1565C0';
+    document.getElementById("leg-length").style.color = lengthLeg < 0.5 ? 'red' : 'black';
+    document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < 0.5 ? 'red' : 'white';
+    document.getElementById("blank-actual-length").style.color = lengthLeg < 0.5 ? 'white' : '#1565C0';
   }
   function Round(value, decimals = 0) {
     if (typeof value === 'number') {
@@ -419,9 +427,6 @@
     } else {
       return value; // handles null being provided
     }
-  }
-  function setViewport(scale) {
-    document.getElementById("viewport").setAttribute("content", `width=device-width, initial-scale=1, maximum-scale= ${scale}`);
   }
 </script>
 
