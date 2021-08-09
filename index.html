@@ -3,7 +3,8 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.70" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.87" />
+  <meta name="mobile-web-app-capable" content="yes">
   <title>Panel Calculator</title>
 
   <!-- CSS  -->
@@ -172,6 +173,7 @@
 
 
   <!-- FORM -->
+  <br/>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="width:90%;">
 
@@ -307,6 +309,9 @@
       </div>
 
     </div>
+    <!-- 123
+    <div id="outerWidth"></div>
+    <div id="outerHeight"></div> -->
   </div>
 
 
@@ -317,6 +322,8 @@
 </body>
 <script>
   // query params: ?bend-offset=0.08&blank-actual-height=17.5&blank-actual-length=70&height=15&length=47.5
+  var w = window.outerWidth;
+  var h = window.outerHeight;
   var elem = null;
   var field = null;
   var minLeg = 0.5;
@@ -325,6 +332,7 @@
     setValuefontSize(this);
   });
   document.addEventListener('DOMContentLoaded', function () {
+    // alert(w + ',' + h);
     const urlSearchParams = new URLSearchParams(window.location.search);
     const params = Object.fromEntries(urlSearchParams.entries());
     if (Object.keys(params).length > 0) {
@@ -337,7 +345,9 @@
           document.getElementById(p).innerHTML = +(params[p]);
         }
       })
-      calculate()
+      calculate();
+      // document.getElementById('outerWidth').innerHTML = w;
+      // document.getElementById('outerHeight').innerHTML = h;
     }
 
     var elems = document.querySelectorAll('.modal');
