@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.99" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="mobile-web-app-capable" content="yes">
   <title>Panel Calculator</title>
 
@@ -460,13 +460,25 @@
     const h = window.innerHeight;
     const w = window.innerWidth;
     // console.log(h, w, e);
-    var size = h > w && w < 500 ? '90px' : '125px';
-    document.getElementById("blank-target-height").style.fontSize = size;
-    document.getElementById("bend-height-1").style.fontSize = size;
-    document.getElementById("bend-height-2").style.fontSize = size;
-    document.getElementById("blank-target-length").style.fontSize = size;
-    document.getElementById("bend-length-1").style.fontSize = size;
-    document.getElementById("bend-length-2").style.fontSize = size;
+    var size = h > w ? '90px' : '125px';
+    var elements = [];
+    elements.push(document.getElementById("blank-target-height"));
+    elements.push(document.getElementById("bend-height-1"));
+    elements.push(document.getElementById("bend-height-2"));
+    elements.push(document.getElementById("blank-target-length"));
+    elements.push(document.getElementById("bend-length-1"));
+    elements.push(document.getElementById("bend-length-2"));
+    elements.forEach((e)=>{
+      e.style.fontSize = size;
+      // e.style.minHeight = h > w ? '150px' : '200px';
+    })
+    elements = [];
+    elements.push(...Array.from(document.getElementsByClassName('blank')));
+    elements.push(...Array.from(document.getElementsByClassName('bend-1')));
+    elements.push(...Array.from(document.getElementsByClassName('bend-2')));
+    elements.forEach((e)=>{
+      e.style.minHeight = h > w ? '180px' : '200px';
+    })
 
     var buttons = Array.from(document.getElementsByClassName("calc-buttons"));
     buttons.forEach((b) => {
