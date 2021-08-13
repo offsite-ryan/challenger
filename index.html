@@ -14,6 +14,13 @@
 <style>
   html {
     line-height: 1.26;
+    background-color: black;
+    color: white;
+  }
+  .modal {
+    /* line-height: 1.26; */
+    background-color: black;
+    color: white;
   }
 
   .x {
@@ -31,34 +38,34 @@
   .blank {
     /* border-right: 5px solid black; */
     /* border-left: 5px solid black; */
-    border-bottom: 5px solid black;
+    border-bottom: 5px solid white;
     /* border-top: 5px solid black; */
     margin-top: 12px;
     min-height: 200px;
   }
 
   .blank-box {
-    border-right: 5px solid black;
-    border-left: 5px solid black;
-    border-bottom: 5px solid black;
-    border-top: 5px solid black;
+    border-right: 5px solid white;
+    border-left: 5px solid white;
+    border-bottom: 5px solid white;
+    border-top: 5px solid white;
     /* margin-top: 12px; */
     height: 50px;
   }
 
   .bend-1 {
     /* border-right: 3px solid black; */
-    border-bottom: 5px solid black;
-    border-left: 10px solid yellowgreen;
+    border-bottom: 5px solid white;
+    border-left: 10px solid #04ff0c;
     /* border-bottom: 3px solid black; */
     margin-top: 18px;
     min-height: 200px;
   }
 
   .bend-2 {
-    border-right: 10px solid yellowgreen;
-    border-bottom: 5px solid black;
-    border-left: 5px solid black;
+    border-right: 10px solid #04ff0c;
+    border-bottom: 5px solid white;
+    border-left: 5px solid white;
     /* border-bottom: 3px solid black; */
     margin-top: 18px;
     min-height: 200px;
@@ -67,8 +74,13 @@
 
   .leg {
     font-size: 20px;
+    color: #04ff0c;
   }
 
+  .input {
+    color: rgb(0, 195, 255);
+    font-weight: 700;
+  }
   .input-label {
     font-size: 35px;
     ;
@@ -86,12 +98,13 @@
   .value {
     /* font-size: 2.7vh; */
     font-size: 125px;
-    color: #4CAF50;
+    color: #04ff0c;
   }
 
   .calc-value {
     font-size: 85px;
     min-height: 110px;
+    color: rgb(0, 195, 255);
   }
 
   .calc-buttons {
@@ -118,6 +131,12 @@
   }
   .modal .modal-footer {
     height: 85px;
+    /* background-color: black;
+    color: white; */
+  }
+  .btn {
+    min-width: 80px;
+    min-height: 40px;
   }
 </style>
 
@@ -127,7 +146,7 @@
   <div id="modal1" class="modal" style="top:30px;max-height:90%;">
     <div class="modal-content" style="padding-bottom: 0px;">
       <div class="row center" style="margin-bottom:0px;">
-        <h3 id="value" class="blue-text text-darken-3 calc-value"></h3>
+        <h3 id="value" class="calc-value"></h3>
       </div>
       <div class="row center" style="font-size: 50px;font-weight: 700;">
         <span>
@@ -188,10 +207,10 @@
 
             <!-- FINISH HEIGHT -->
             <div class="col s7 center">
-              <div class="truncate input-label">Finish Height:</div>
+              <div class="truncate input-label">Finish Short:</div>
             </div>
             <div class="col s3 center">
-              <div id="height" class="blue-text text-darken-3">
+              <div id="height" class="input">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('height')">
@@ -201,10 +220,10 @@
             </div>
             <!-- FINISH LENGTH -->
             <div class="col s7 center">
-              <div class="truncate input-label">Finish Length:</div>
+              <div class="truncate input-label">Finish Long:</div>
             </div>
             <div class="col s3 center" style="border:0px solid blue">
-              <div id="length" class="blue-text text-darken-3">
+              <div id="length" class="input">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('length')">
@@ -218,7 +237,7 @@
               <div class="truncate input-label">Leg Length:</div>
             </div>
             <div class="col s3 center" style="border:0px solid blue">
-              <div id="leg" class="blue-text text-darken-3">
+              <div id="leg" class="input">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('leg')">
@@ -235,7 +254,7 @@
               <div class="truncate input-label">Short Actual:</div>
             </div>
             <div class="col s3 center">
-              <div id="blank-actual-height">
+              <div id="blank-actual-height" class="input">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-height')">
@@ -248,7 +267,7 @@
               <div class="truncate input-label">Long Actual:</div>
             </div>
             <div class="col s3 center">
-              <div id="blank-actual-length">
+              <div id="blank-actual-length" class="input">
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('blank-actual-length')">
@@ -261,7 +280,7 @@
               <div class="truncate input-label">Bend Offset:</div>
             </div>
             <div class="col s3 center">
-              <div id="bend-offset" class="blue-text text-darken-3">0.08
+              <div id="bend-offset" class="input">0.08
               </div>
             </div>
             <div class="col s1 center" onclick="openModal('bend-offset')">
@@ -278,8 +297,8 @@
         <div class="col s12 l6 center">
           <div class="col s12 center">
             <div class="label blank">Blank Target Short<br />
-              <div>Leg: <b id="leg-height"></b></div>
-              <b class="green-text value" id="blank-target-height"></b>
+              <div>Leg: <b id="leg-height" class="leg"></b></div>
+              <b class="value" id="blank-target-height"></b>
             </div>
           </div>
 
@@ -296,8 +315,8 @@
         <div class="col s12 l6 center">
           <div class="col s12 center">
             <div class="label blank">Blank Target Long<br />
-              <div>Leg: <b id="leg-length"></b></div>
-              <b class="green-text value" id="blank-target-length"></b>
+              <div>Leg: <b id="leg-length" class="leg"></b></div>
+              <b class="value" id="blank-target-length"></b>
             </div>
           </div>
           <div class="col s12 center bends">
@@ -444,12 +463,12 @@
       document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);;
     }
     // validate the leg length for height and length based on min and max
-    document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'black';
-    document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : 'white';
-    document.getElementById("blank-actual-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'white' : '#1565C0';
-    document.getElementById("leg-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : 'black';
-    document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : 'white';
-    document.getElementById("blank-actual-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'white' : '#1565C0';
+    document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : null;
+    document.getElementById("blank-actual-height").style.backgroundColor = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : null;
+    document.getElementById("blank-actual-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? null : null;
+    document.getElementById("leg-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : null;
+    document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : null;
+    document.getElementById("blank-actual-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'white' : null;
 
     setValuefontSize(this);
   }
