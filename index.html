@@ -18,6 +18,7 @@
     background-color: black;
     color: white;
   }
+
   .modal {
     /* line-height: 1.26; */
     background-color: black;
@@ -82,6 +83,7 @@
     color: rgb(0, 195, 255);
     font-weight: 700;
   }
+
   .input-label {
     font-size: 35px;
     ;
@@ -115,7 +117,7 @@
 
   .calc-actions {
     font-size: 45px;
-    min-width:140px;
+    min-width: 140px;
   }
 
   .row {
@@ -130,11 +132,13 @@
     margin-bottom: 10px;
     font-size: 45px;
   }
+
   .modal .modal-footer {
     height: 85px;
     /* background-color: black;
     color: white; */
   }
+
   .btn {
     min-width: 80px;
     min-height: 40px;
@@ -157,30 +161,28 @@
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a class=" btn-floating btn-large orange calc-buttons"
-            style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(4)">4</a>
+          <a class=" btn-floating btn-large orange calc-buttons" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(4)">4</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue(5)">5</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue(6)">6</a>
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a class=" btn-floating btn-large orange calc-buttons"
-            style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(1)">1</a>
+          <a class=" btn-floating btn-large orange calc-buttons" style="margin-bottom: 10px;font-size: 45px;"
+            onclick="updateValue(1)">1</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue(2)">2</a>
-          <a class="btn-floating btn-large orange orange calc-buttons"
-            onclick="updateValue(3)">3</a>
+          <a class="btn-floating btn-large orange orange calc-buttons" onclick="updateValue(3)">3</a>
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a id="plusMinus" class=" btn-floating btn-large calc-buttons"
-            style="margin-bottom: 0px;font-size: 40px;" onclick="updateValue('-')">+/-</a>
+          <a id="plusMinus" class=" btn-floating btn-large orange calc-buttons" style="margin-bottom: 0px;font-size: 40px;"
+            onclick="updateValue('-')">+/-</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue(0)">0</a>
-          <a class="btn-floating btn-large orange calc-buttons"
-            onclick="updateValue('.')">.</a>
+          <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue('.')">.</a>
         </span>
       </div>
     </div>
-    <br/>
+    <br />
     <div class="modal-footer">
       <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
       <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
@@ -480,7 +482,7 @@
     const h = window.innerHeight;
     const w = window.innerWidth;
     // console.log(h, w, e);
-    var size = h > w ? '90px' : '125px';
+    var size = h > w ? '110px' : '125px';
     var elements = [];
     elements.push(document.getElementById("blank-target-height"));
     elements.push(document.getElementById("bend-height-1"));
@@ -488,7 +490,7 @@
     elements.push(document.getElementById("blank-target-length"));
     elements.push(document.getElementById("bend-length-1"));
     elements.push(document.getElementById("bend-length-2"));
-    elements.forEach((e)=>{
+    elements.forEach((e) => {
       e.style.fontSize = size;
       // e.style.minHeight = h > w ? '150px' : '200px';
     })
@@ -496,18 +498,27 @@
     elements.push(...Array.from(document.getElementsByClassName('blank')));
     elements.push(...Array.from(document.getElementsByClassName('bend-1')));
     elements.push(...Array.from(document.getElementsByClassName('bend-2')));
-    elements.forEach((e)=>{
+    elements.forEach((e) => {
       e.style.minHeight = h > w ? '180px' : '200px';
     })
 
     var buttons = Array.from(document.getElementsByClassName("calc-buttons"));
     buttons.forEach((b) => {
-      if (b.id !== 'plusMinus') {
-        b.style.fontSize = h > w ? '50px' : '70px';
+      if (w < 500) {
+        if (b.id == 'plusMinus') {
+          b.style.fontSize = '30px';
+        }
+        b.style.width = '60px';
+        b.style.height = '60px';
+        b.style.paddingTop = '3px';
+      } else {
+        if (b.id !== 'plusMinus') {
+          b.style.fontSize = h > w ? '50px' : '70px';
+        }
+        b.style.width = h > w ? '100px' : '120px';
+        b.style.height = h > w ? '100px' : '120px';
+        b.style.paddingTop = h > w ? '25px' : '30px';
       }
-      b.style.width = h > w ? '100px' : '120px';
-      b.style.height = h > w ? '100px' : '120px';
-      b.style.paddingTop = h > w ? '25px' : '30px';
     })
   }
   function Round(value, decimals = 0) {
