@@ -3,7 +3,7 @@
 
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.87" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=0.99" />
   <meta name="mobile-web-app-capable" content="yes">
   <title>Panel Calculator</title>
 
@@ -95,7 +95,12 @@
   }
 
   .calc-buttons {
-    font-size: 35px;
+    font-size: 75px;
+    ;
+  }
+
+  .calc-actions {
+    font-size: 45px;
     ;
   }
 
@@ -104,10 +109,15 @@
   }
 
   .btn-floating.btn-large {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
     padding: 0;
-    padding-top: 15px;
+    padding-top: 30px;
+    margin-bottom: 10px;
+    font-size: 45px;
+  }
+  .modal .modal-footer {
+    height: 85px;
   }
 </style>
 
@@ -121,46 +131,40 @@
       </div>
       <div class="row center" style="font-size: 50px;font-weight: 700;">
         <span>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(7)">7</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(8)">8</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(9)">9</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(7)">7</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(8)">8</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(9)">9</a>
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a class=" btn-floating btn-large waves-effect waves-light orange"
+          <a class=" btn-floating btn-large waves-effect waves-light orange calc-buttons"
             style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(4)">4</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(5)">5</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(6)">6</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(5)">5</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(6)">6</a>
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a class=" btn-floating btn-large waves-effect waves-light orange"
+          <a class=" btn-floating btn-large waves-effect waves-light orange calc-buttons"
             style="margin-bottom: 10px;font-size: 45px;" onclick="updateValue(1)">1</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(2)">2</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(2)">2</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange orange calc-buttons"
             onclick="updateValue(3)">3</a>
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a id="plusMinus" class=" btn-floating btn-large waves-effect waves-light orange"
-            style="margin-bottom: 0px;font-size: 25px;" onclick="updateValue('-')">+/-</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
-            onclick="updateValue(0)">0</a>
-          <a class="btn-floating btn-large waves-effect waves-light orange" style="margin-bottom: 10px;font-size: 45px;"
+          <a id="plusMinus" class=" btn-floating btn-large waves-effect waves-light calc-buttons"
+            style="margin-bottom: 0px;font-size: 40px;" onclick="updateValue('-')">+/-</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons" onclick="updateValue(0)">0</a>
+          <a class="btn-floating btn-large waves-effect waves-light orange calc-buttons"
             onclick="updateValue('.')">.</a>
         </span>
       </div>
     </div>
+    <br/>
     <div class="modal-footer">
-      <a class="waves-effect waves-green btn-flat calc-buttons left" onclick="updateValue('C')">Clear</a>
-      <a class="modal-close waves-effect waves-green btn-flat calc-buttons" onclick="apply()">OK</a>
-      <a class="modal-close waves-effect waves-green btn-flat calc-buttons">Cancel</a>
+      <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
+      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
+      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions">Cancel</a>
     </div>
   </div>
 
@@ -173,14 +177,14 @@
 
 
   <!-- FORM -->
-  <br/>
+  <br />
   <div class="section no-pad-bot" id="index-banner">
     <div class="container" style="width:90%;">
 
       <div id="bends" class="row">
 
         <div class="row">
-          <div class="col s12 l6 center" style="font-size:38px;">
+          <div class="col s12 m6 center" style="font-size:38px;">
 
             <!-- FINISH HEIGHT -->
             <div class="col s7 center">
@@ -225,7 +229,7 @@
           </div>
 
           <!-- FINISH DIMENSIONS -->
-          <div class="col s12 l6 center" style="font-size:38px;">
+          <div class="col s12 m6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
               <div class="truncate input-label">Short Actual:</div>
@@ -328,6 +332,7 @@
   var field = null;
   var minLeg = 0.5;
   var maxLeg = 2;
+  var elemValue = null;
   window.addEventListener('resize', function () {
     setValuefontSize(this);
   });
@@ -346,6 +351,7 @@
         }
       })
       calculate();
+      elemValue = document.getElementById('value');
       // document.getElementById('outerWidth').innerHTML = w;
       // document.getElementById('outerHeight').innerHTML = h;
     }
@@ -358,6 +364,7 @@
     field = x;
     var v = document.getElementById(field).innerHTML.trim()
     document.getElementById("value").innerHTML = +(v) === 0 ? '' : v;
+    // elemValue.innerHTML = +(v) === 0 ? '' : v;
     var instance = M.Modal.getInstance(elem);
     if (field == 'bend-offset') {
       document.getElementById("plusMinus").removeAttribute('disabled');
@@ -367,22 +374,23 @@
     instance.open();
   }
   function updateValue(x) {
-    setTimeout(() => {
-      var e = document.getElementById("value");
-      if (x == 'C') {
-        e.innerHTML = "";
-      } else if (x == '-') {
-        let v = e.innerHTML;
-        if (v.startsWith(x)) {
-          v = v.substr(1);
-        } else {
-          v = x + v;
-        }
-        e.innerHTML = v;
+    // setTimeout(() => {
+    var e = document.getElementById("value");
+    // var e = elemValue;
+    if (x == 'C') {
+      e.innerHTML = "";
+    } else if (x == '-') {
+      let v = e.innerHTML;
+      if (v.startsWith(x)) {
+        v = v.substr(1);
       } else {
-        e.innerHTML += x;
+        v = x + v;
       }
-    }, 1)
+      e.innerHTML = v;
+    } else {
+      e.innerHTML += x;
+    }
+    // }, 1)
   }
   function apply() {
     var v = +(document.getElementById("value").innerHTML);
@@ -460,7 +468,15 @@
     document.getElementById("bend-length-1").style.fontSize = size;
     document.getElementById("bend-length-2").style.fontSize = size;
 
-    // document.getElementsByClassName("label").style.fontSize = size;
+    var buttons = Array.from(document.getElementsByClassName("calc-buttons"));
+    buttons.forEach((b) => {
+      if (b.id !== 'plusMinus') {
+        b.style.fontSize = h > w ? '50px' : '70px';
+      }
+      b.style.width = h > w ? '100px' : '120px';
+      b.style.height = h > w ? '100px' : '120px';
+      b.style.paddingTop = h > w ? '25px' : '30px';
+    })
   }
   function Round(value, decimals = 0) {
     if (typeof value === 'number') {
