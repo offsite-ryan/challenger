@@ -118,6 +118,7 @@
   .calc-actions {
     font-size: 45px;
     min-width: 140px;
+    color: white;
   }
 
   .row {
@@ -135,8 +136,8 @@
 
   .modal .modal-footer {
     height: 85px;
-    /* background-color: black;
-    color: white; */
+    background-color: black;
+    color: white;
   }
 
   .btn {
@@ -175,8 +176,8 @@
         </span>
         <br>
         <span style="margin-top:5px;">
-          <a id="plusMinus" class=" btn-floating btn-large orange calc-buttons" style="margin-bottom: 0px;font-size: 40px;"
-            onclick="updateValue('-')">+/-</a>
+          <a id="plusMinus" class=" btn-floating btn-large orange calc-buttons"
+            style="margin-bottom: 0px;font-size: 40px;" onclick="updateValue('-')">+/-</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue(0)">0</a>
           <a class="btn-floating btn-large orange calc-buttons" onclick="updateValue('.')">.</a>
         </span>
@@ -184,9 +185,9 @@
     </div>
     <br />
     <div class="modal-footer">
-      <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
-      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
-      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions">Cancel</a>
+        <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
+        <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
+        <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions">Cancel</a>
     </div>
   </div>
 
@@ -235,7 +236,7 @@
               </div>
             </div>
             <!-- <br /> -->
-            <!-- FINISH LENGTH -->
+            <!-- LEG LENGTH -->
             <div class="col s7 center">
               <div class="truncate input-label">Leg Length:</div>
             </div>
@@ -254,7 +255,7 @@
           <div class="col s12 m6 center" style="font-size:38px;">
             <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
-              <div class="truncate input-label">Short Actual:</div>
+              <div class="truncate input-label">Actual Short:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-height" class="input">
@@ -267,7 +268,7 @@
             </div>
             <!-- BLANK ACTUAL LENGTH -->
             <div class="col s7 center">
-              <div class="truncate input-label">Long Actual:</div>
+              <div class="truncate input-label">Actual Long:</div>
             </div>
             <div class="col s3 center">
               <div id="blank-actual-length" class="input">
@@ -482,7 +483,7 @@
     const h = window.innerHeight;
     const w = window.innerWidth;
     // console.log(h, w, e);
-    var size = h > w ? '110px' : '125px';
+    var size = h > w ? '100px' : '118px';
     var elements = [];
     elements.push(document.getElementById("blank-target-height"));
     elements.push(document.getElementById("bend-height-1"));
@@ -501,16 +502,37 @@
     elements.forEach((e) => {
       e.style.minHeight = h > w ? '180px' : '200px';
     })
+    // elements = [];
+    // elements.push(...Array.from(document.getElementsByClassName('input-label')));
+    // elements.push(...Array.from(document.getElementsByClassName('input')));
+    // elements.forEach((e) => {
+    //   e.style.fontSize = '0.8em';
+    // })
+    // elements = [];
+    // elements.push(...Array.from(document.getElementsByClassName('value')));
+    // elements.forEach((e) => {
+    //   if (w < 500) {
+    //     e.style.fontSize = '95px';
+    //   }
+    // })
+    elements = [];
+    elements.push(...Array.from(document.getElementsByClassName('btn')));
+    elements.forEach((e) => {
+      if (w < 500) {
+        e.style.minWidth = '40px';
+      }
+    })
 
     var buttons = Array.from(document.getElementsByClassName("calc-buttons"));
     buttons.forEach((b) => {
       if (w < 500) {
-        if (b.id == 'plusMinus') {
-          b.style.fontSize = '30px';
-        }
+        b.style.fontSize = '40px';
         b.style.width = '60px';
         b.style.height = '60px';
         b.style.paddingTop = '3px';
+        if (b.id == 'plusMinus') {
+          b.style.fontSize = '30px';
+        }
       } else {
         if (b.id !== 'plusMinus') {
           b.style.fontSize = h > w ? '50px' : '70px';
