@@ -441,9 +441,13 @@
     var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - bendOffset) / 2 : (targetLength - requestedLength) / 2;
     if (requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(requestedHeight + (leg * 2), 3);
+    } else {
+      document.getElementById("blank-target-height").innerHTML = '';
     }
     if (requestedLength > 0) {
       document.getElementById("blank-target-length").innerHTML = Round(requestedLength + (leg * 2), 3);
+    } else {
+      document.getElementById("blank-target-length").innerHTML = '';
     }
     if (blankActualHeight > 0 && requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
