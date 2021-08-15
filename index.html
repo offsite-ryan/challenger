@@ -453,7 +453,7 @@
         document.getElementById("bend-height-1").innerHTML = '';
         document.getElementById("bend-height-2").innerHTML = '';
       }
-      document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
+      document.getElementById("leg-height").innerHTML = Round(heightLeg + bendOffset, 3);
     } else {
       document.getElementById("blank-target-height").innerHTML = '';
     }
@@ -468,7 +468,7 @@
         document.getElementById("bend-length-1").innerHTML = '';
         document.getElementById("bend-length-2").innerHTML = '';
       }
-      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg + bendOffset, 3);
     } else {
       document.getElementById("blank-target-length").innerHTML = '';
     }
