@@ -437,22 +437,26 @@
     var bendOffset = +(document.getElementById("bend-offset").innerHTML);
     var blankActualHeight = +(document.getElementById("blank-actual-height").innerHTML);
     var blackActualLength = +(document.getElementById("blank-actual-length").innerHTML);
-    var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight - bendOffset) / 2 : (targetHeight - requestedHeight) / 2;
-    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - bendOffset) / 2 : (targetLength - requestedLength) / 2;
+    // var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight - (bendOffset * 2)) / 2 : (targetHeight - requestedHeight) / 2;
+    // var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - (bendOffset * 2)) / 2 : (targetLength - requestedLength) / 2;
+    var heightLeg = blankActualHeight > 0 ? ((blankActualHeight - requestedHeight - (bendOffset * 2))/2) : ((leg * 2) - (bendOffset * 2)) / 2;
+    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - (bendOffset * 2)) / 2 : ((leg * 2) - (bendOffset * 2)) / 2;
     // TARGET HEIGHT
     if (requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
       if (blankActualHeight > 0 && requestedHeight > 0) {
-        document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
-        var v1 = Round(blankActualHeight - heightLeg - bendOffset, 3);
-        document.getElementById("bend-height-1").innerHTML = v1;
-        document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
-        document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
+        // var v1 = Round(blankActualHeight - heightLeg - bendOffset, 3);
+        // document.getElementById("bend-height-1").innerHTML = v1;
+        // document.getElementById("bend-height-2").innerHTML = Round(v1 - heightLeg - bendOffset, 3);
+        // document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
+        var v = Round(blankActualHeight - heightLeg,3);
+        document.getElementById("bend-height-1").innerHTML = Round(v, 3);
+        document.getElementById("bend-height-2").innerHTML = Round(v - heightLeg - bendOffset, 3);
       } else {
         document.getElementById("bend-height-1").innerHTML = '';
         document.getElementById("bend-height-2").innerHTML = '';
-        document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
       }
+      document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
     } else {
       document.getElementById("blank-target-height").innerHTML = '';
     }
@@ -460,16 +464,18 @@
     if (requestedLength > 0) {
       document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
       if (blackActualLength > 0 && requestedLength > 0) {
-        document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
-        var v2 = Round(blackActualLength - lengthLeg - bendOffset, 3);
-        document.getElementById("bend-length-1").innerHTML = v2;
-        document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+        // var v2 = Round(blackActualLength - lengthLeg - bendOffset, 3);
+        // document.getElementById("bend-length-1").innerHTML = v2;
+        // document.getElementById("bend-length-2").innerHTML = Round(v2 - lengthLeg - bendOffset, 3);
+        var v = Round(blackActualLength - lengthLeg,3);
+        document.getElementById("bend-length-1").innerHTML = Round(v, 3);
+        document.getElementById("bend-length-2").innerHTML = Round(v - lengthLeg - bendOffset, 3);
         document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
       } else {
         document.getElementById("bend-length-1").innerHTML = '';
         document.getElementById("bend-length-2").innerHTML = '';
-        document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
       }
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
     } else {
       document.getElementById("blank-target-length").innerHTML = '';
     }
