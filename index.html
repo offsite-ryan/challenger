@@ -185,9 +185,9 @@
     </div>
     <br />
     <div class="modal-footer">
-        <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
-        <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
-        <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions">Cancel</a>
+      <a class="waves-effect waves-green btn-flat btn-large calc-actions left" onclick="updateValue('C')">Clear</a>
+      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions" onclick="apply()">OK</a>
+      <a class="modal-close waves-effect waves-green btn-flat btn-large calc-actions">Cancel</a>
     </div>
   </div>
 
@@ -417,19 +417,14 @@
   }
   function apply() {
     var v = +(document.getElementById("value").innerHTML);
-    var leg = +(document.getElementById("leg").innerHTML);
     document.getElementById(field).innerHTML = v;
-    if (field == 'height' || field == 'length') {
-      var blankSize = v + (leg * 2);
-      if (v > 0) {
-        document.getElementById("blank-target-" + field).innerHTML = Round(blankSize, 3);
-        if (field == 'height') {
-          document.getElementById("blank-actual-height").innerHTML = '';
-        }
-        if (field == 'length') {
-          document.getElementById("blank-actual-length").innerHTML = '';
-        }
-      }
+
+    // clear other fields
+    if (field == 'height') {
+      document.getElementById("blank-actual-height").innerHTML = '';
+    }
+    if (field == 'length') {
+      document.getElementById("blank-actual-length").innerHTML = '';
     }
     calculate();
   }
@@ -444,6 +439,12 @@
     var blackActualLength = +(document.getElementById("blank-actual-length").innerHTML);
     var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight - bendOffset) / 2 : (targetHeight - requestedHeight) / 2;
     var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength - bendOffset) / 2 : (targetLength - requestedLength) / 2;
+    if (requestedHeight > 0) {
+      document.getElementById("blank-target-height").innerHTML = Round(requestedHeight + (leg * 2), 3);
+    }
+    if (requestedLength > 0) {
+      document.getElementById("blank-target-length").innerHTML = Round(requestedLength + (leg * 2), 3);
+    }
     if (blankActualHeight > 0 && requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
       var v1 = Round(blankActualHeight - heightLeg - bendOffset, 3);
@@ -464,7 +465,7 @@
     } else {
       document.getElementById("bend-length-1").innerHTML = '';
       document.getElementById("bend-length-2").innerHTML = '';
-      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);;
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
     }
     // validate the leg length for height and length based on min and max
     document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : null;
