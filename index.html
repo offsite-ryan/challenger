@@ -440,8 +440,8 @@
     // var heightLeg = blankActualHeight > 0 ? ((blankActualHeight - requestedHeight + (bendOffset * 2))/2) : ((leg * 2) + (bendOffset * 2)) / 2;
     // var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength + (bendOffset * 2)) / 2 : ((leg * 2) + (bendOffset * 2)) / 2;
 
-    var heightLeg = blankActualHeight > 0 ? ((blankActualHeight - requestedHeight)/2) : (targetHeight - requestedHeight)/2;
-    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength + (bendOffset * 2)) / 2 : ((leg * 2) + (bendOffset * 2)) / 2;
+    var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight)/2 : (targetHeight - requestedHeight)/2;
+    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength) / 2 : (targetLength - requestedLength)/2;
     // TARGET HEIGHT
     if (requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
