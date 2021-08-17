@@ -222,15 +222,15 @@
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
-            <!-- FINISH LENGTH -->
+            <!-- BLANK ACTUAL HEIGHT -->
             <div class="col s7 center">
-              <div class="truncate input-label">Finish Long:</div>
+              <div class="truncate input-label">Actual Short:</div>
             </div>
-            <div class="col s3 center" style="border:0px solid blue">
-              <div id="length" class="input">
+            <div class="col s3 center">
+              <div id="blank-actual-height" class="input">
               </div>
             </div>
-            <div class="col s1 center" onclick="openModal('length')">
+            <div class="col s1 center" onclick="openModal('blank-actual-height')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
@@ -253,19 +253,20 @@
 
           <!-- FINISH DIMENSIONS -->
           <div class="col s12 m6 center" style="font-size:38px;">
-            <!-- BLANK ACTUAL HEIGHT -->
+            <!-- FINISH LENGTH -->
             <div class="col s7 center">
-              <div class="truncate input-label">Actual Short:</div>
+              <div class="truncate input-label">Finish Long:</div>
             </div>
-            <div class="col s3 center">
-              <div id="blank-actual-height" class="input">
+            <div class="col s3 center" style="border:0px solid blue">
+              <div id="length" class="input">
               </div>
             </div>
-            <div class="col s1 center" onclick="openModal('blank-actual-height')">
+            <div class="col s1 center" onclick="openModal('length')">
               <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
                 <img src="images/edit.png" style="height:28px;margin-top:3px;" />
               </div>
             </div>
+            
             <!-- BLANK ACTUAL LENGTH -->
             <div class="col s7 center">
               <div class="truncate input-label">Actual Long:</div>
@@ -446,9 +447,9 @@
     if (requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
       if (blankActualHeight > 0 && requestedHeight > 0) {
-        var v = Round(blankActualHeight - heightLeg + bendOffset,3);
-        document.getElementById("bend-height-1").innerHTML = Round(v, 3);
-        document.getElementById("bend-height-2").innerHTML = Round(v - heightLeg, 3);
+        // var v = Round(blankActualHeight - heightLeg + bendOffset,3);
+        document.getElementById("bend-height-1").innerHTML = Round(blankActualHeight - heightLeg + bendOffset, 3);
+        document.getElementById("bend-height-2").innerHTML = Round(requestedHeight + bendOffset, 3);
       } else {
         document.getElementById("bend-height-1").innerHTML = '';
         document.getElementById("bend-height-2").innerHTML = '';
@@ -461,9 +462,9 @@
     if (requestedLength > 0) {
       document.getElementById("blank-target-length").innerHTML = Round(targetLength, 3);
       if (blackActualLength > 0 && requestedLength > 0) {
-        var v = Round(blackActualLength - lengthLeg + bendOffset,3);
-        document.getElementById("bend-length-1").innerHTML = Round(v, 3);
-        document.getElementById("bend-length-2").innerHTML = Round(v - lengthLeg, 3);
+        // var v = Round(blackActualLength - lengthLeg + bendOffset,3);
+        document.getElementById("bend-length-1").innerHTML = Round(blackActualLength - lengthLeg + bendOffset, 3);
+        document.getElementById("bend-length-2").innerHTML = Round(requestedLength + bendOffset, 3);
       } else {
         document.getElementById("bend-length-1").innerHTML = '';
         document.getElementById("bend-length-2").innerHTML = '';
