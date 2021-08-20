@@ -23,6 +23,7 @@
     /* line-height: 1.26; */
     background-color: black;
     color: white;
+    border: 2px solid white;
   }
 
   .x {
@@ -40,7 +41,7 @@
   .blank {
     /* border-right: 5px solid black; */
     /* border-left: 5px solid black; */
-    border-bottom: 5px solid white;
+    /* border-bottom: 5px solid white; */
     /* border-top: 5px solid black; */
     margin-top: 12px;
     min-height: 200px;
@@ -82,11 +83,16 @@
   .input {
     color: rgb(0, 195, 255);
     font-weight: 700;
+    font-size: 55px;
   }
 
+  /* .input-editor {
+    color: rgb(0, 195, 255);
+    font-weight: 700;
+  } */
+
   .input-label {
-    font-size: 35px;
-    ;
+    font-size: 55px;
   }
 
   .label {
@@ -100,7 +106,7 @@
 
   .value {
     /* font-size: 2.7vh; */
-    font-size: 125px;
+    font-size: 120px;
     color: #04ff0c;
   }
 
@@ -143,11 +149,204 @@
   .btn {
     min-width: 80px;
     min-height: 40px;
+    /* padding-top: 12px; */
+    /* margin-top: 15px; */
+
+  }
+
+  .edit {
+    font-size: 50px;
+    background-color: #ff9800 !important;
+  }
+
+  .menu {
+    top: 20px;
+    left: 20px;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    font-size: 40px;
+    background-color: black !important;
+    border: 3px solid white !important;
+  }
+
+  /* sidebar */
+  .sidepanel {
+    width: 0%;
+    height: 0%;
+    position: fixed;
+    z-index: 2;
+    /**height: 250px;**/
+    top: 0;
+    left: 0;
+    background-color: black;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 30px;
+  }
+
+  .sidepanel a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  .sidepanel a:hover {
+    color: #f1f1f1;
+  }
+
+  .sidepanel .closebtn {
+    position: absolute;
+    bottom: 0;
+    right: 25px;
+    /* font-size: 36px; */
+    font-size: 60px;
+    cursor: pointer;
+    /* background-color: #111; */
+    color: white;
+    /* padding: 10px 15px; */
+    /* border: none; */
+    /* width:100%; */
+    /* border: 1px solid white; */
+  }
+
+  .sidepanel .resetbtn {
+    position: absolute;
+    bottom: 0;
+    left: 25px;
+    /* font-size: 36px; */
+    font-size: 60px;
+    cursor: pointer;
+    /* background-color: #111; */
+    color: white;
+    /* padding: 10px 15px; */
+    /* border: none; */
+    /* width:100%; */
+    /* border: 1px solid white; */
+  }
+
+  .openbtn {
+    font-size: 40px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    width: 100%;
+    border-bottom: 1px solid white;
+  }
+
+  .openbtn:hover {
+    background-color: #444;
   }
 </style>
 
 <body>
 
+  <!-- SIDEBAR -->
+  <div id="mySidepanel" class="sidepanel">
+
+    <div class="row">
+      <div class="col s12 m8 offset-m2 center" style="font-size:38px;">
+        <h3>Finish</h3>
+        <hr />
+
+        <!-- FINISH HEIGHT -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Short:</div>
+        </div>
+        <div class="col s3 center">
+          <div id="height" class="input">-
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('height')">
+          <!-- <div class="btn waves-effect waves-light orange"> -->
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+          <!-- </div> -->
+        </div>
+        <!-- FINISH LENGTH -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Long:</div>
+        </div>
+        <div class="col s3 center" style="border:0px solid blue">
+          <div id="length" class="input">-
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('length')">
+          <!-- <div class="btn waves-effect waves-light orange" style="margin-top:-8px;"> -->
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+          <!-- </div> -->
+        </div>
+        <!-- LEG LENGTH -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Leg:</div>
+        </div>
+        <div class="col s3 center" style="border:0px solid blue">
+          <div id="leg" class="input">-
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('leg')">
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+        </div>
+
+      </div>
+      <!-- FINISH DIMENSIONS -->
+      <div class="col s12 m8 offset-m2 center" style="font-size:38px;">
+        <br />
+        <h3>Blank Actual</h3>
+        <hr />
+        <!-- BLANK ACTUAL HEIGHT -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Short:</div>
+        </div>
+        <div class="col s3 center">
+          <div id="blank-actual-height" class="input">-
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('blank-actual-height')">
+          <!-- <div class="btn waves-effect waves-light orange" style="margin-top:-8px;"> -->
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+          <!-- </div> -->
+        </div>
+
+        <!-- BLANK ACTUAL LENGTH -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Long:</div>
+        </div>
+        <div class="col s3 center">
+          <div id="blank-actual-length" class="input">-
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('blank-actual-length')">
+          <!-- <div class="btn waves-effect waves-light orange" style="margin-top:-8px;"> -->
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+          <!-- </div> -->
+        </div>
+        <!-- BEND OFFSET -->
+        <div class="col s7 center">
+          <div class="truncate input-label">Bend Offset:</div>
+        </div>
+        <div class="col s3 center">
+          <div id="bend-offset" class="input">-0.08
+          </div>
+        </div>
+        <div class="col s1 center edit" onclick="openModal('bend-offset')">
+          <!-- <div class="btn waves-effect waves-light orange" style="margin-top:-8px;"> -->
+          <img src="images/edit.png" style="height:38px;margin-top:3px;" />
+          <!-- </div> -->
+        </div>
+
+      </div>
+
+    </div>
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
+    <a href="javascript:void(0)" class="resetbtn" onclick="reset()">Reset</a>
+  </div>
+
+  
   <!-- Modal Structure -->
   <div id="modal1" class="modal" style="top:30px;max-height:90%;">
     <div class="modal-content" style="padding-bottom: 0px;">
@@ -198,117 +397,40 @@
 
 
 
+  <button class="btn-floating menu" onclick="openNav()">☰</button>
 
   <!-- FORM -->
   <br />
-  <div class="section no-pad-bot" id="index-banner">
+  <div class="section2 no-pad-bot2" id="index-banner">
     <div class="container" style="width:90%;">
+      <button class="openbtn" onclick="openNav()">
+        Finish: <span id="finish" class="input">15 x 45.75 </span>
+      </button>
 
       <div id="bends" class="row">
-
-        <div class="row">
-          <div class="col s12 m6 center" style="font-size:38px;">
-
-            <!-- FINISH HEIGHT -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Finish Short:</div>
-            </div>
-            <div class="col s3 center">
-              <div id="height" class="input">
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('height')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-            <!-- BLANK ACTUAL HEIGHT -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Actual Short:</div>
-            </div>
-            <div class="col s3 center">
-              <div id="blank-actual-height" class="input">
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('blank-actual-height')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-            <!-- <br /> -->
-            <!-- LEG LENGTH -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Leg Length:</div>
-            </div>
-            <div class="col s3 center" style="border:0px solid blue">
-              <div id="leg" class="input">
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('leg')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-          </div>
-
-          <!-- FINISH DIMENSIONS -->
-          <div class="col s12 m6 center" style="font-size:38px;">
-            <!-- FINISH LENGTH -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Finish Long:</div>
-            </div>
-            <div class="col s3 center" style="border:0px solid blue">
-              <div id="length" class="input">
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('length')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-            
-            <!-- BLANK ACTUAL LENGTH -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Actual Long:</div>
-            </div>
-            <div class="col s3 center">
-              <div id="blank-actual-length" class="input">
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('blank-actual-length')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-            <!-- BEND OFFSET -->
-            <div class="col s7 center">
-              <div class="truncate input-label">Bend Offset:</div>
-            </div>
-            <div class="col s3 center">
-              <div id="bend-offset" class="input">0.08
-              </div>
-            </div>
-            <div class="col s1 center" onclick="openModal('bend-offset')">
-              <div class="btn waves-effect waves-light orange" style="margin-top:-8px;">
-                <img src="images/edit.png" style="height:28px;margin-top:3px;" />
-              </div>
-            </div>
-
-          </div>
-        </div>
-        <hr />
-
         <!-- VALUES -->
-        <div class="col s12 l6 center">
-          <div class="col s12 center">
+        <div class="col s12 center">
+          <div class="col s6 center">
             <div class="label blank">Blank Target Short<br />
-              <div>Leg: <b id="leg-height" class="leg"></b></div>
+              <!-- <div>Leg: <b id="leg-height" class="leg"></b></div> -->
               <b class="value" id="blank-target-height"></b>
             </div>
           </div>
+          <div class="col s6 center">
+            <div class="label blank">Blank Target Long<br />
+              <!-- <div>Leg: <b id="leg-length" class="leg"></b></div> -->
+              <b class="value" id="blank-target-length"></b>
+            </div>
+          </div>
+        </div>
+        <button class="openbtn" onclick="openNav()">Actual: <span id="blank" class="input">17.452 x 49.9</span></button>
+        <div class="col s12 l6 center">
+
 
           <div class="col s12 center bends">
-            <div class="label-value bend-1">Short Bend 1<br /><b class="value" id="bend-height-1"></b>
+            <div class="label-value bend-1">Short Bend 1
+              <div>Leg: <b id="leg-height" class="leg"></b></div>
+              <br /><b class="value" id="bend-height-1"></b>
             </div>
           </div>
           <div class="col s12 center bends">
@@ -316,16 +438,14 @@
             </div>
           </div>
         </div>
+        <!-- <button class="openbtn" onclick="openNav()">☰ Blank Actual Size: 15 x 45.75</button> -->
 
         <div class="col s12 l6 center">
-          <div class="col s12 center">
-            <div class="label blank">Blank Target Long<br />
-              <div>Leg: <b id="leg-length" class="leg"></b></div>
-              <b class="value" id="blank-target-length"></b>
-            </div>
-          </div>
+
           <div class="col s12 center bends">
-            <div class="label-value bend-1">Long Bend 1<br /><b class="value" id="bend-length-1"></b>
+            <div class="label-value bend-1">Long Bend 1
+              <div>Leg: <b id="leg-length" class="leg"></b></div>
+              <br /><b class="value" id="bend-length-1"></b>
             </div>
           </div>
           <div class="col s12 center bends">
@@ -387,7 +507,7 @@
   function openModal(x) {
     field = x;
     var v = document.getElementById(field).innerHTML.trim()
-    document.getElementById("value").innerHTML = +(v) === 0 ? '' : v;
+    document.getElementById("value").innerHTML = +(v) === 0 || v === '-' ? '' : v;
     // elemValue.innerHTML = +(v) === 0 ? '' : v;
     var instance = M.Modal.getInstance(elem);
     if (field == 'bend-offset') {
@@ -416,16 +536,23 @@
     }
     // }, 1)
   }
+  function reset() {
+    document.getElementById('height').innerHTML = '-';
+    document.getElementById('length').innerHTML = '-';
+    document.getElementById('blank-actual-height').innerHTML = '-';
+    document.getElementById('blank-actual-length').innerHTML = '-';
+    calculate();
+  }
   function apply() {
     var v = +(document.getElementById("value").innerHTML);
     document.getElementById(field).innerHTML = v;
 
     // clear other fields
     if (field == 'height') {
-      document.getElementById("blank-actual-height").innerHTML = '';
+      document.getElementById("blank-actual-height").innerHTML = '-';
     }
     if (field == 'length') {
-      document.getElementById("blank-actual-length").innerHTML = '';
+      document.getElementById("blank-actual-length").innerHTML = '-';
     }
     calculate();
   }
@@ -441,8 +568,8 @@
     // var heightLeg = blankActualHeight > 0 ? ((blankActualHeight - requestedHeight + (bendOffset * 2))/2) : ((leg * 2) + (bendOffset * 2)) / 2;
     // var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength + (bendOffset * 2)) / 2 : ((leg * 2) + (bendOffset * 2)) / 2;
 
-    var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight)/2 : (targetHeight - requestedHeight)/2;
-    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength) / 2 : (targetLength - requestedLength)/2;
+    var heightLeg = blankActualHeight > 0 ? (blankActualHeight - requestedHeight) / 2 : (targetHeight - requestedHeight) / 2;
+    var lengthLeg = blackActualLength > 0 ? (blackActualLength - requestedLength) / 2 : (targetLength - requestedLength) / 2;
     // TARGET HEIGHT
     if (requestedHeight > 0) {
       document.getElementById("blank-target-height").innerHTML = Round(targetHeight, 3);
@@ -454,9 +581,11 @@
         document.getElementById("bend-height-1").innerHTML = '';
         document.getElementById("bend-height-2").innerHTML = '';
       }
-      document.getElementById("leg-height").innerHTML = Round(heightLeg + bendOffset, 3);
+      document.getElementById("leg-height").innerHTML = Round(heightLeg, 3);
     } else {
       document.getElementById("blank-target-height").innerHTML = '';
+      document.getElementById("bend-height-1").innerHTML = '';
+      document.getElementById("bend-height-2").innerHTML = '';
     }
     // TARGET LENGTH
     if (requestedLength > 0) {
@@ -469,9 +598,11 @@
         document.getElementById("bend-length-1").innerHTML = '';
         document.getElementById("bend-length-2").innerHTML = '';
       }
-      document.getElementById("leg-length").innerHTML = Round(lengthLeg + bendOffset, 3);
+      document.getElementById("leg-length").innerHTML = Round(lengthLeg, 3);
     } else {
       document.getElementById("blank-target-length").innerHTML = '';
+      document.getElementById("bend-length-1").innerHTML = '';
+      document.getElementById("bend-length-2").innerHTML = '';
     }
     // validate the leg length for height and length based on min and max
     document.getElementById("leg-height").style.color = heightLeg < minLeg || heightLeg > maxLeg ? 'red' : null;
@@ -481,12 +612,25 @@
     document.getElementById("blank-actual-length").style.backgroundColor = lengthLeg < minLeg || lengthLeg > maxLeg ? 'red' : null;
     document.getElementById("blank-actual-length").style.color = lengthLeg < minLeg || lengthLeg > maxLeg ? 'white' : null;
 
+    if (requestedHeight > 0 & requestedLength > 0) {
+      document.getElementById("finish").innerHTML = requestedHeight + ' x ' + requestedLength;
+    } else {
+      document.getElementById("finish").innerHTML = '';
+    }
+
+    if (blankActualHeight > 0 & blackActualLength > 0) {
+      document.getElementById("blank").innerHTML = blankActualHeight + ' x ' + blackActualLength;
+    } else {
+      document.getElementById("blank").innerHTML = '';
+    }
+
     setValuefontSize(this);
   }
   /**
    * set the font size so that it is not too big on mobile
    */
   function setValuefontSize(e) {
+    return;
     const h = window.innerHeight;
     const w = window.innerWidth;
     // console.log(h, w, e);
@@ -550,6 +694,16 @@
       }
     })
   }
+  // SIDENAV
+  function openNav() {
+    document.getElementById("mySidepanel").style.width = "100%";
+    document.getElementById("mySidepanel").style.height = "100%";
+  }
+  function closeNav() {
+    document.getElementById("mySidepanel").style.width = "0";
+    document.getElementById("mySidepanel").style.height = "0%";
+  }
+
   function Round(value, decimals = 0) {
     if (typeof value === 'number') {
       return Number(Math.round(+(value + 'e' + decimals)) + 'e-' + decimals).toFixed(decimals);
