@@ -250,7 +250,7 @@
   <div id="mySidepanel" class="sidepanel">
 
     <div class="row">
-      <div class="col s12 m8 offset-m2 center" style="font-size:38px;">
+      <div class="col s12 l8 offset-l2 center" style="font-size:38px;">
         <h3>Finish</h3>
         <hr />
 
@@ -294,7 +294,7 @@
 
       </div>
       <!-- FINISH DIMENSIONS -->
-      <div class="col s12 m8 offset-m2 center" style="font-size:38px;">
+      <div class="col s12 l8 offset-l2 center" style="font-size:38px;">
         <br />
         <h3>Blank Actual</h3>
         <hr />
@@ -410,13 +410,13 @@
       <div id="bends" class="row">
         <!-- VALUES -->
         <div class="col s12 center">
-          <div class="col s6 center">
+          <div class="col s12 l6 center">
             <div class="label blank">Blank Target Short<br />
               <div>Leg: <b id="leg-height" class="leg"></b></div>
               <b class="value" id="blank-target-height"></b>
             </div>
           </div>
-          <div class="col s6 center">
+          <div class="col s12 l6 center">
             <div class="label blank">Blank Target Long<br />
               <div>Leg: <b id="leg-length" class="leg"></b></div>
               <b class="value" id="blank-target-length"></b>
@@ -424,9 +424,8 @@
           </div>
         </div>
         <button class="openbtn" onclick="openNav()">Actual: <span id="blank" class="input">17.452 x 49.9</span></button>
+
         <div class="col s12 l6 center">
-
-
           <div class="col s12 center bends">
             <div class="label-value bend-1">Short Bend 1
               <!-- <div>Leg: <b id="leg-height" class="leg"></b></div> -->
@@ -630,7 +629,7 @@
    * set the font size so that it is not too big on mobile
    */
   function setValuefontSize(e) {
-    return;
+    // return;
     const h = window.innerHeight;
     const w = window.innerWidth;
     // console.log(h, w, e);
