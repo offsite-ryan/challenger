@@ -140,6 +140,11 @@
     font-size: 45px;
   }
 
+  .modal {
+    top: 5%;
+    top:5%;
+    max-height:95%;
+  }
   .modal .modal-footer {
     height: 85px;
     background-color: black;
@@ -348,7 +353,7 @@
 
   
   <!-- Modal Structure -->
-  <div id="modal1" class="modal" style="top:30px;max-height:90%;">
+  <div id="modal1" class="modal">
     <div class="modal-content" style="padding-bottom: 0px;">
       <div class="row center" style="margin-bottom:0px;">
         <h3 id="value" class="calc-value"></h3>
@@ -404,7 +409,7 @@
   <div class="section2 no-pad-bot2" id="index-banner">
     <div class="container" style="width:90%;">
       <button class="openbtn" onclick="openNav()">
-        Finish: <span id="finish" class="input">15 x 45.75 </span>
+        Finish: <span id="finish" class="input"></span>
       </button>
 
       <div id="bends" class="row">
@@ -423,7 +428,7 @@
             </div>
           </div>
         </div>
-        <button class="openbtn" onclick="openNav()">Actual: <span id="blank" class="input">17.452 x 49.9</span></button>
+        <button class="openbtn" onclick="openNav()">Actual: <span id="blank" class="input"></span></button>
 
         <div class="col s12 l6 center">
           <div class="col s12 center bends">
@@ -666,10 +671,22 @@
     //   }
     // })
     elements = [];
-    elements.push(...Array.from(document.getElementsByClassName('btn')));
+    elements.push(...Array.from(document.getElementsByClassName('edit')));
     elements.forEach((e) => {
       if (w < 500) {
-        e.style.minWidth = '40px';
+        e.style.minWidth = '50px';
+        // e.style.height = '30px';
+      }
+    })
+    elements = [];
+    elements.push(...Array.from(document.getElementsByClassName('input')));
+    elements.push(...Array.from(document.getElementsByClassName('input-label')));
+    elements.push(...Array.from(document.getElementsByClassName('closebtn')));
+    elements.push(...Array.from(document.getElementsByClassName('resetbtn')));
+    elements.push(...Array.from(document.getElementsByClassName('edit')));
+    elements.forEach((e) => {
+      if (w < 500) {
+        e.style.fontSize = '30px';
       }
     })
 
